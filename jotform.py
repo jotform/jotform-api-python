@@ -57,6 +57,10 @@ class JotformAPIClient:
         path = "/user/" + self.username + "/folders"
         return self.fetchUrl(path)
 
+    def getUserSettings(self):
+        path = "/user/" + self.username + "/settings"
+        return self.fetchUrl(path)
+
     def getUserSettingsBySettingKey(self, settingKey):
         path = "/user/" + self.username + "\/settings\/" + settingKey
         return self.fetchUrl(path)
