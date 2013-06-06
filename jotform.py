@@ -92,23 +92,24 @@ class JotformAPIClient:
         path = "/form/" + formId + "/quesiton/" + questionId
         return self.fetchUrl(path)
 
-
     def getSubmissionsByFormId(self, formId):
         path = "/form/" + formId + "/submissions"
         return self.fetchUrl(path)
 
-    # def postSubmissionsByFormId(self, formId):
-    #     path = "/form/" + formId + "/submissions"
-    #     return self.fetchUrl(path)
-
+    def postSubmissionByFormId(self, formId, submission):
+        path = "/form/" + formId + "/submissions"
+        return self.fetchUrl(path, submission)
 
     def getWebhooksByFormID(self, formId):
         path = "/form/" + formId + "/webhooks"
         return self.fetchUrl(path)
 
-    # def addWebhookToForm(self, formId):
-    #     path = "/form/" + formId + "/files"
-    #     return self.fetchUrl(path)
+    def addWebhookToForm(self, formId, webhookURL):
+        path = "/form/" + formId + "/files"
+        params = {
+            'webhookURL': webookURL
+        }
+        return self.fetchUrl(path, params)
 
     def getUserSubmissionById(self, subId):
         path = "/user/" + self.username + "\/submission\/" + subId
