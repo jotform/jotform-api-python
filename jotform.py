@@ -96,7 +96,7 @@ class JotformAPIClient:
         path = "/form/" + formId + "/submissions"
         return self.fetchUrl(path)
 
-    def postSubmissionByFormId(self, formId, submission):
+    def addSubmissionsByFormId(self, formId, submission):
         path = "/form/" + formId + "/submissions"
         return self.fetchUrl(path, submission)
 
