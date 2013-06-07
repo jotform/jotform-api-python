@@ -27,7 +27,7 @@ class JotformAPIClient:
         if self.debugMode:
             print message
 
-    def fetchUrl(self, url, params=None):
+    def fetch_url(self, url, params=None):
 
         url = self.baseUrl + self.apiVersion + url
         self._log('fetching url ' + url)
@@ -47,79 +47,79 @@ class JotformAPIClient:
 
         return responseObject["content"]
 
-    def getUser(self):
-        return self.fetchUrl('/user')[0]
+    def get_user(self):
+        return self.fetch_url('/user')[0]
 
-    def getUserUsage(self):
+    def get_usage(self):
         path = "/user/" + self.username + "/usage"
-        return self.fetchUrl(path)
+        return self.fetch_url(path)
 
-    def getForms(self):
-        return self.fetchUrl('/user/forms')
+    def get_forms(self):
+        return self.fetch_url('/user/forms')
 
-    def getSubmissions(self):
+    def get_submissions(self):
         path = "/user/" + self.username + "/submissions"
-        return self.fetchUrl(path)
+        return self.fetch_url(path)
 
-    def getUserSubusers(self):
+    def get_subusers(self):
         path = "/user/" + self.username + "/subusers"
-        return self.fetchUrl(path)
+        return self.fetch_url(path)
 
-    def getUserFolders(self):
+    def get_folders(self):
         path = "/user/" + self.username + "/folders"
-        return self.fetchUrl(path)
+        return self.fetch_url(path)
 
-    def getUserReports(self):
+    def get_reports(self):
         path = "/user/" + self.username + "/reports"
-        return self.fetchUrl(path)
+        return self.fetch_url(path)
 
-    def getUserSettings(self):
+    def get_settings(self):
         path = "/user/" + self.username + "/settings"
-        return self.fetchUrl(path)
+        return self.fetch_url(path)
 
-    def getUserHistory(self):
+    def get_history(self):
         path = "/user/" + self.username + "/history"
-        return self.fetchUrl(path)
+        return self.fetch_url(path)
 
-    def getFormById(self, formId):
-        return self.fetchUrl('/forms/' + formId)
+    def get_form(self, formID):
+        return self.fetch_url('/forms/' + formID)
 
-    def getQuestionsByFormId(self, formId):
-        path = "/form/" + formId + "/questions"
-        return self.fetchUrl(path)
+    def get_form_questions(self, formID):
+        path = "/form/" + formID + "/questions"
+        return self.fetch_url(path)
 
-    def getQuestionById(self, formId,  questionId):
-        path = "/form/" + formId + "/quesiton/" + questionId
-        return self.fetchUrl(path)
+    def get_form_question(self, formID,  qid):
+        path = "/form/" + formID + "/quesiton/" + qid
+        return self.fetch_url(path)
 
-    def getSubmissionsByFormId(self, formId):
-        path = "/form/" + formId + "/submissions"
-        return self.fetchUrl(path)
+    def get_form_submissions(self, formID):
+        path = "/form/" + formID + "/submissions"
+        return self.fetch_url(path)
 
-    def addSubmissionsByFormId(self, formId, submission):
-        path = "/form/" + formId + "/submissions"
-        return self.fetchUrl(path, submission)
+    def create_form_submission(self, formID, submission):
+        path = "/form/" + formID + "/submissions"
+        return self.fetch_url(path, submission)
 
-    def getWebhooksByFormID(self, formId):
-        path = "/form/" + formId + "/webhooks"
-        return self.fetchUrl(path)
+    def get_form_webhooks(self, formID):
+        path = "/form/" + formID + "/webhooks"
+        return self.fetch_url(path)
 
-    def addWebhookToForm(self, formId, webhookURL):
-        path = "/form/" + formId + "/files"
+    def create_form_webhook(self, formID, webhookURL):
+        path = "/form/" + formID + "/files"
         params = {
             'webhookURL': webookURL
         }
-        return self.fetchUrl(path, params)
+        return self.fetch_url(path, params)
 
-    def getUserSubmissionById(self, subId):
-        path = "/user/" + self.username + "\/submission\/" + subId
-        return self.fetchUrl(path)
+    def get_submission(self, sid):
+        path = "/submission/" + sid
+        return self.fetch_url(path)
 
-    def getUserReportById(self, reportId):
-        path = "/user/" + self.username + "\/report\/" + reportId
-        return self.fetchUrl(path)
+    def get_report(self, reportID):
+        path = "/report/" + reportID
+        return self.fetch_url(path)
 
-    def getUserFolderById(self, folderId):
-        path = "/user/" + self.username + "/folder/" + self.folderId
-        return self.fetchUrl(path)
+    def get_folder(self, folderID):
+        path = "/folder/" + self.folderID
+        return self.fetch_url(path)
         
