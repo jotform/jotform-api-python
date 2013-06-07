@@ -96,6 +96,10 @@ class JotformAPIClient:
         path = "/form/" + formID + "/submissions"
         return self.fetch_url(path)
 
+    def get_form_files(self, formID):
+        path = "/form/" + formID + "/files"
+        return self.fetch_url(path)
+
     def create_form_submission(self, formID, submission):
         path = "/form/" + formID + "/submissions"
         return self.fetch_url(path, submission)
@@ -105,7 +109,7 @@ class JotformAPIClient:
         return self.fetch_url(path)
 
     def create_form_webhook(self, formID, webhookURL):
-        path = "/form/" + formID + "/files"
+        path = "/form/" + formID + "/webhooks"
         params = {
             'webhookURL': webookURL
         }
