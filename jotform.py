@@ -20,7 +20,7 @@ class JotformAPIClient:
         self.apiKey = apiKey
         self.debugMode = debug
         self.outputType = outputType
-        self.user = self.getUser()
+        self.user = self.get_user()
         self.username = self.user["username"]
 
     def _log(self, message):
@@ -48,7 +48,7 @@ class JotformAPIClient:
         return responseObject["content"]
 
     def get_user(self):
-        return self.fetch_url('/user')[0]
+        return self.fetch_url('/user')
 
     def get_usage(self):
         path = "/user/" + self.username + "/usage"
