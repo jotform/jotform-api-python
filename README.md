@@ -56,4 +56,23 @@ if __name__ == "__main__":
    
 
 Get latest submissions of the user
+
+from jotform import *
+
+
+def main():
+    print 'tests are running'
+
+    jotformAPIClient = JotformAPIClient('YOUR API KEY')
+
+
+    submissions = jotformAPIClient.get_submissions()
+
+    for submission in submissions:
+    	print submission["created_at"], submission["fields"]
+
+
+if __name__ == "__main__":
+    main()
+
     
