@@ -10,20 +10,6 @@ Install via git clone:
         $ git clone git://github.com/jotform/jotform-api-python.git
         $ cd jotform-api-python
         
-or
-
-Install via Composer package manager (http://getcomposer.org/)
-        
-_composer.json_
-```json
-    {
-        "require": {
-            "jotform/jotform-api-php": "dev-master"
-        }
-    }
-```
-
-        $ php composer.phar install
 
 ### Documentation
 
