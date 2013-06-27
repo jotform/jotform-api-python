@@ -20,8 +20,6 @@ class JotformAPIClient:
         self.apiKey = apiKey
         self.debugMode = debug
         self.outputType = outputType
-        self.user = self.get_user()
-        self.username = self.user["username"]
 
     def _log(self, message):
         if self.debugMode:
