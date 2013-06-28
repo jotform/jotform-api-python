@@ -49,34 +49,34 @@ class JotformAPIClient:
         return self.fetch_url('/user')
 
     def get_usage(self):
-        path = "/user/" + self.username + "/usage"
+        path = "/user/usage"
         return self.fetch_url(path)
 
     def get_forms(self):
         return self.fetch_url('/user/forms')
 
     def get_submissions(self):
-        path = "/user/" + self.username + "/submissions"
+        path = "/user/submissions"
         return self.fetch_url(path)
 
     def get_subusers(self):
-        path = "/user/" + self.username + "/subusers"
+        path = "/user/subusers"
         return self.fetch_url(path)
 
     def get_folders(self):
-        path = "/user/" + self.username + "/folders"
+        path = "/user/folders"
         return self.fetch_url(path)
 
     def get_reports(self):
-        path = "/user/" + self.username + "/reports"
+        path = "/user/reports"
         return self.fetch_url(path)
 
     def get_settings(self):
-        path = "/user/" + self.username + "/settings"
+        path = "/user/settings"
         return self.fetch_url(path)
 
     def get_history(self):
-        path = "/user/" + self.username + "/history"
+        path = "/user/history"
         return self.fetch_url(path)
 
     def get_form(self, formID):
