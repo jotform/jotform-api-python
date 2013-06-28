@@ -55,7 +55,7 @@ def main():
     submissions = jotformAPIClient.get_submissions()
 
     for submission in submissions:
-    	print submission["created_at"], submission["fields"]
+    	print submission["created_at"], submission["answers"]
 
 
 if __name__ == "__main__":
