@@ -109,7 +109,7 @@ class JotformAPIClient:
     def create_form_webhook(self, formID, webhookURL):
         path = "/form/" + formID + "/webhooks"
         params = {
-            'webhookURL': webookURL
+            'webhookURL': webhookURL
         }
         return self.fetch_url(path, params)
 
