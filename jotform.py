@@ -98,9 +98,21 @@ class JotformAPIClient:
         path = "/form/" + formID + "/files"
         return self.fetch_url(path)
 
-    def create_form_submission(self, formID, submission):
+    def create_form_submissions(self, formID, submission):
+        sub = {}
+
+        for key in submission.keys():
+            if "first" in key:
+                sub['submission[' + key[0:key.find("_")] + '][first]'] = submission[key]
+            elif "last" in key:
+                sub['submission[' + key[0:key.find("_")] + '][last]'] = submission[key]
+            else:
+                sub['submission[' + key + ']'] = submission[key]
+
+        print sub
+
         path = "/form/" + formID + "/submissions"
-        return self.fetch_url(path, submission)
+        return self.fetch_url(path, sub)
 
     def get_form_webhooks(self, formID):
         path = "/form/" + formID + "/webhooks"
