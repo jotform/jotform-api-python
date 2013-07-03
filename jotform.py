@@ -134,7 +134,7 @@ class JotformAPIClient:
         return self.fetch_url(path)
 
     def get_folder(self, folderID):
-        path = "/folder/" + self.folderID
+        path = "/folder/" + folderID
         return self.fetch_url(path)
 
     def get_form_properties(self, formID):
