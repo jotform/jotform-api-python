@@ -140,4 +140,8 @@ class JotformAPIClient:
     def get_form_properties(self, formID):
         path = "/form/" + formID + "/properties"
         return self.fetch_url(path)
+
+    def get_form_property(self, formID, propertyKey):
+        path = "/form/" + formID + "/properties/" + propertyKey
+        return self.fetch_url(path)
         
