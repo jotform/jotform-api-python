@@ -106,10 +106,40 @@ class JotformAPIClient:
                 sub['submission[' + key[0:key.find("_")] + '][first]'] = submission[key]
             elif "last" in key:
                 sub['submission[' + key[0:key.find("_")] + '][last]'] = submission[key]
+            elif "month" in key:
+                sub['submission[' + key[0:key.find("_")] + '][month]'] = submission[key]
+            elif "day" in key:
+                sub['submission[' + key[0:key.find("_")] + '][day]'] = submission[key]
+            elif "year" in key:
+                sub['submission[' + key[0:key.find("_")] + '][year]'] = submission[key]
+            elif "hour" in key:
+                sub['submission[' + key[0:key.find("_")] + '][hour]'] = submission[key]
+            elif "min" in key:
+                sub['submission[' + key[0:key.find("_")] + '][min]'] = submission[key]
+            elif "ampm" in key:
+                sub['submission[' + key[0:key.find("_")] + '][ampm]'] = submission[key]
+            elif "addr_line1" in key:
+                sub['submission[' + key[0:key.find("_")] + '][addr_line1]'] = submission[key]
+            elif "addr_line2" in key:
+                sub['submission[' + key[0:key.find("_")] + '][addr_line2]'] = submission[key]
+            elif "city" in key:
+                sub['submission[' + key[0:key.find("_")] + '][city]'] = submission[key]
+            elif "state" in key:
+                sub['submission[' + key[0:key.find("_")] + '][state]'] = submission[key]
+            elif "postal" in key:
+                sub['submission[' + key[0:key.find("_")] + '][postal]'] = submission[key]
+            elif "country" in key:
+                sub['submission[' + key[0:key.find("_")] + '][country]'] = submission[key]
+            elif "area" in key:
+                sub['submission[' + key[0:key.find("_")] + '][area]'] = submission[key]
+            elif "phone" in key:
+                sub['submission[' + key[0:key.find("_")] + '][phone]'] = submission[key]
+            elif "hourSelect" in key:
+                sub['submission[' + key[0:key.find("_")] + '][hourSelect]'] = submission[key]
+            elif "minuteSelect" in key:
+                sub['submission[' + key[0:key.find("_")] + '][minuteSelect]'] = submission[key]
             else:
                 sub['submission[' + key + ']'] = submission[key]
-
-        print sub
 
         path = "/form/" + formID + "/submissions"
         return self.fetch_url(path, sub)
