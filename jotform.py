@@ -36,6 +36,7 @@ class JotformAPIClient:
 
         if (params):
             data = urllib.urlencode(params)
+            print data
         else:
             data = None
 
@@ -44,6 +45,20 @@ class JotformAPIClient:
         responseObject = json.loads(response.read())
 
         return responseObject["content"]
+
+    def create_conditions(self, offset, limit, filterArray, order_by):
+        params = {}
+
+        if (offset):
+            params["offset"] = offset
+        if (limit):
+            params["limit"] = limit
+        if (filterArray):
+            params["filter"] = json.dumps(filterArray)
+        if (order_by):
+            params["order_by"] = order_by
+
+        return params
 
     def get_user(self):
         return self.fetch_url('/user')
@@ -55,8 +70,14 @@ class JotformAPIClient:
     def get_forms(self):
         return self.fetch_url('/user/forms')
 
-    def get_submissions(self):
+    def get_submissions(self, offset=None, limit=None, filterArray=None, order_by=None):
+        params = self.create_conditions(offset, limit, filterArray, order_by)
+
         path = "/user/submissions"
+
+        if (params):
+            path = path + "?" + urllib.urlencode(params)
+            
         return self.fetch_url(path)
 
     def get_subusers(self):
