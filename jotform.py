@@ -25,7 +25,7 @@ class JotformAPIClient:
         if self.debugMode:
             print message
 
-    def fetch_url(self, url, params=None):
+    def fetch_url(self, url, params=None, method=None):
 
         url = self.baseUrl + self.apiVersion + url
         self._log('fetching url ' + url)
@@ -36,11 +36,14 @@ class JotformAPIClient:
 
         if (params):
             data = urllib.urlencode(params)
-            print data
         else:
             data = None
 
         req = urllib2.Request(url, headers=headers, data=data)
+
+        if (method == "DELETE"):
+            req.get_method = lambda: 'DELETE'
+
         response = urllib2.urlopen(req)
         responseObject = json.loads(response.read())
 
@@ -161,4 +164,8 @@ class JotformAPIClient:
     def get_form_property(self, formID, propertyKey):
         path = "/form/" + formID + "/properties/" + propertyKey
         return self.fetch_url(path)
+
+    def delete_submission(self, sid):
+        path = "/submission/" + sid
+        return self.fetch_url(path, None, "DELETE")
         
