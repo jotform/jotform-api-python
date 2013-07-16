@@ -114,8 +114,14 @@ class JotformAPIClient:
         path = "/form/" + formID + "/quesiton/" + qid
         return self.fetch_url(path)
 
-    def get_form_submissions(self, formID):
+    def get_form_submissions(self, formID, offset=None, limit=None, filterArray=None, order_by=None):
+        params = self.create_conditions(offset, limit, filterArray, order_by)
+
         path = "/form/" + formID + "/submissions"
+
+        if (params):
+            path = path + "?" + urllib.urlencode(params)
+            
         return self.fetch_url(path)
 
     def get_form_files(self, formID):
