@@ -70,8 +70,15 @@ class JotformAPIClient:
         path = "/user/usage"
         return self.fetch_url(path)
 
-    def get_forms(self):
-        return self.fetch_url('/user/forms')
+    def get_forms(self, offset=None, limit=None, filterArray=None, order_by=None):
+        params = self.create_conditions(offset, limit, filterArray, order_by)
+
+        path = "/user/forms"
+
+        if (params):
+            path = path + "?" + urllib.urlencode(params)
+
+        return self.fetch_url(path)
 
     def get_submissions(self, offset=None, limit=None, filterArray=None, order_by=None):
         params = self.create_conditions(offset, limit, filterArray, order_by)
@@ -121,7 +128,7 @@ class JotformAPIClient:
 
         if (params):
             path = path + "?" + urllib.urlencode(params)
-            
+
         return self.fetch_url(path)
 
     def get_form_files(self, formID):
