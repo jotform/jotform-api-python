@@ -181,4 +181,16 @@ class JotformAPIClient:
     def delete_submission(self, sid):
         path = "/submission/" + sid
         return self.fetch_url(path, None, "DELETE")
+
+    def edit_submission(self, sid, submission):
+        sub = {}
+
+        for key in submission.keys():
+            if "_" in key:
+                sub['submission[' + key[0:key.find("_")] + '][' + key[key.find("_")+1:len(key)] + ']'] = submission[key]
+            else:
+                sub['submission[' + key + ']'] = submission[key]
+                
+        path = "/submission/" + sid
+        return self.fetch_url(path, sub)
         
