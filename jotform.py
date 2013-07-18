@@ -193,4 +193,10 @@ class JotformAPIClient:
                 
         path = "/submission/" + sid
         return self.fetch_url(path, sub)
+
+    def clone_form(self, formID):
+        params = {"method": "post"}
+        path = "/form/" + formID + "/clone"
+
+        return self.fetch_url(path, params)
         
