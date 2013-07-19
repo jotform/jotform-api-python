@@ -199,4 +199,8 @@ class JotformAPIClient:
         path = "/form/" + formID + "/clone"
 
         return self.fetch_url(path, params)
+
+    def delete_form_question(self, formID, qid):
+        path = "/form/" + formID + "/question/" + qid
+        return self.fetch_url(path, None, "DELETE")
         
