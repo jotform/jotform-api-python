@@ -25,11 +25,9 @@ Print all forms of the user
 
 from jotform import *
 
-
 def main():
 
     jotformAPIClient = JotformAPIClient('YOUR API KEY')
-
 
     forms = jotformAPIClient.get_forms()
 
@@ -39,26 +37,81 @@ def main():
 if __name__ == "__main__":
     main()
 
-   
 
-Get latest submissions of the user
+Get submissions of the latest form
 
 from jotform import *
 
 
 def main():
-    print 'tests are running'
 
     jotformAPIClient = JotformAPIClient('YOUR API KEY')
 
+    forms = jotformAPIClient.get_forms(None, 1, None, None)
 
-    submissions = jotformAPIClient.get_submissions()
+    latestForm = forms[0]
 
-    for submission in submissions:
-    	print submission["created_at"], submission["answers"]
+    latestFormID = latestForm["id"]
 
+    submissions = jotformAPIClient.get_form_submissions(latestFormID)
+
+    print submissions
 
 if __name__ == "__main__":
     main()
+
+Get latest 100 submissions ordered by creation date
+
+from jotform import *
+
+def main():
+
+    jotformAPIClient = JotformAPIClient('YOUR API KEY')
+
+    submissions = jotformAPIClient.get_submissions(0, 100, None, "created_at")
+
+    print submissions
+
+if __name__ == "__main__":
+    main()
+
+Submission and form filter examples
+
+from jotform import *
+
+def main():
+
+    jotformAPIClient = JotformAPIClient('YOUR API KEY')
+
+    submission_filter = {"id:gt":"FORM ID", "created_at": "DATE"}
+
+    submission = jotformAPIClient.get_submissions(0, 0, submission_filter, "") 
+    print submission
+
+    form_filter = {"id:gt": "FORM ID"}
+
+    forms = jotformAPIClient.get_forms(0,0, form_filter, "")
+    print forms
+
+if __name__ == "__main__":
+    main()
+
+Delete last 50 submissions
+
+from jotform import *
+
+def main():
+
+    jotformAPIClient = JotformAPIClient('YOUR API KEY')
+
+    submissions = jotformAPIClient.get_submissions(0, 50, None, None)
+
+    for submission in submissions:
+        result = jotformAPIClient.delete_submission(submission["id"])
+        print result
+
+if __name__ == "__main__":
+    main()
+
 
     
