@@ -113,5 +113,8 @@ def main():
 if __name__ == "__main__":
     main()
 
+First the JotformAPIClient class is included from the jotform-api-python/jotForm.py file. This class provides access to JotForm's API. You have to create an API client instance with your API key. 
+In any case of exception (wrong authentication etc.), you can catch it or let it fail with fatal error.
+
 
     
