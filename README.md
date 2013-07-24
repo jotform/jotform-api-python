@@ -1,6 +1,6 @@
 jotform-api-python 
 ===============
-JotForm API - Python Client
+[JotForm API](http://api.jotform.com/docs/) - Python Client
 
 
 ### Installation
