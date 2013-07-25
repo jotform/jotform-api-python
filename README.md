@@ -23,6 +23,7 @@ JotForm API requires API key for all user related calls. You can create your API
 
 Print all forms of the user
 
+```python
 from jotform import *
 
 def main():
@@ -36,12 +37,12 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+```  
 
 Get submissions of the latest form
 
+```python
 from jotform import *
-
 
 def main():
 
@@ -59,9 +60,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+``` 
 
 Get latest 100 submissions ordered by creation date
 
+```python
 from jotform import *
 
 def main():
@@ -74,9 +77,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+``` 
 
 Submission and form filter examples
 
+```python
 from jotform import *
 
 def main():
@@ -95,9 +100,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+``` 
 
 Delete last 50 submissions
 
+```python
 from jotform import *
 
 def main():
@@ -112,8 +119,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+``` 
 
-First the JotformAPIClient class is included from the jotform-api-python/jotForm.py file. This class provides access to JotForm's API. You have to create an API client instance with your API key. 
+First the _JotformAPIClient_ class is included from the _jotform-api-python/jotForm.py_ file. This class provides access to JotForm's API. You have to create an API client instance with your API key. 
 In any case of exception (wrong authentication etc.), you can catch it or let it fail with fatal error.
 
 
