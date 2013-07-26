@@ -105,7 +105,7 @@ class JotformAPIClient:
         return self.fetch_url(path)
 
     def get_submissions(self, offset=None, limit=None, filterArray=None, order_by=None):
-        """Get a list of forms for this account.
+        """Get a list of submissions for this account.
 
         Args:
             offset (string): Start of each result set for form list. (optional)
