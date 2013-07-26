@@ -1,0 +1,269 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module jotform</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>jotform</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/imac/Desktop/Projects/jotform-api-python/jotform.py">/Users/imac/Desktop/Projects/jotform-api-python/jotform.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-<br>
+#<br>
+#&nbsp;Jotform&nbsp;API&nbsp;Wrapper<br>
+#&nbsp;copyright&nbsp;:&nbsp;Interlogy&nbsp;LLC<br>
+#</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="urllib.html">urllib</a><br>
+</td><td width="25%" valign=top><a href="urllib2.html">urllib2</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="jotform.html#JotformAPIClient">JotformAPIClient</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="JotformAPIClient">class <strong>JotformAPIClient</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="JotformAPIClient-__init__"><strong>__init__</strong></a>(self, apiKey, debug<font color="#909090">=False</font>, outputType<font color="#909090">='json'</font>)</dt></dl>
+
+<dl><dt><a name="JotformAPIClient-clone_form"><strong>clone_form</strong></a>(self, formID)</dt><dd><tt>Clone&nbsp;a&nbsp;single&nbsp;form.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Status&nbsp;of&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-create_conditions"><strong>create_conditions</strong></a>(self, offset, limit, filterArray, order_by)</dt></dl>
+
+<dl><dt><a name="JotformAPIClient-create_form_submissions"><strong>create_form_submissions</strong></a>(self, formID, submission)</dt><dd><tt>Submit&nbsp;data&nbsp;to&nbsp;this&nbsp;form&nbsp;using&nbsp;the&nbsp;API.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;submission&nbsp;(array):&nbsp;Submission&nbsp;data&nbsp;with&nbsp;question&nbsp;IDs.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Posted&nbsp;submission&nbsp;ID&nbsp;and&nbsp;URL.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-create_form_webhook"><strong>create_form_webhook</strong></a>(self, formID, webhookURL)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;webhook<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;webhookURL&nbsp;(string):&nbsp;Webhook&nbsp;URL&nbsp;is&nbsp;where&nbsp;form&nbsp;data&nbsp;will&nbsp;be&nbsp;posted&nbsp;when&nbsp;form&nbsp;is&nbsp;submitted.&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;webhooks&nbsp;for&nbsp;a&nbsp;specific&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-delete_form_question"><strong>delete_form_question</strong></a>(self, formID, qid)</dt><dd><tt>Delete&nbsp;a&nbsp;single&nbsp;form&nbsp;question.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;qid&nbsp;(string):&nbsp;Identifier&nbsp;for&nbsp;each&nbsp;question&nbsp;on&nbsp;a&nbsp;form.&nbsp;You&nbsp;can&nbsp;get&nbsp;a&nbsp;list&nbsp;of&nbsp;question&nbsp;IDs&nbsp;from&nbsp;/form/{id}/questions.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Status&nbsp;of&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-delete_submission"><strong>delete_submission</strong></a>(self, sid)</dt><dd><tt>Delete&nbsp;a&nbsp;single&nbsp;submission.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sid&nbsp;(string):&nbsp;You&nbsp;can&nbsp;get&nbsp;submission&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/form/{id}/submissions.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Status&nbsp;of&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-edit_submission"><strong>edit_submission</strong></a>(self, sid, submission)</dt><dd><tt>Edit&nbsp;a&nbsp;single&nbsp;submission.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sid&nbsp;(string):&nbsp;You&nbsp;can&nbsp;get&nbsp;submission&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/form/{id}/submissions.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;submission&nbsp;(array):&nbsp;New&nbsp;submission&nbsp;data&nbsp;with&nbsp;question&nbsp;IDs.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Status&nbsp;of&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-fetch_url"><strong>fetch_url</strong></a>(self, url, params<font color="#909090">=None</font>, method<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="JotformAPIClient-get_folder"><strong>get_folder</strong></a>(self, folderID)</dt><dd><tt>Get&nbsp;folder&nbsp;details<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;folderID&nbsp;(string):&nbsp;Get&nbsp;a&nbsp;list&nbsp;of&nbsp;folders&nbsp;from&nbsp;/user/folders<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;forms&nbsp;in&nbsp;a&nbsp;folder,&nbsp;and&nbsp;other&nbsp;details&nbsp;about&nbsp;the&nbsp;form&nbsp;such&nbsp;as&nbsp;folder&nbsp;color.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_folders"><strong>get_folders</strong></a>(self)</dt><dd><tt>Get&nbsp;a&nbsp;list&nbsp;of&nbsp;form&nbsp;folders&nbsp;for&nbsp;this&nbsp;account.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;of&nbsp;the&nbsp;folder&nbsp;and&nbsp;owner&nbsp;of&nbsp;the&nbsp;folder&nbsp;for&nbsp;shared&nbsp;folders.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_form"><strong>get_form</strong></a>(self, formID)</dt><dd><tt>Get&nbsp;basic&nbsp;information&nbsp;about&nbsp;a&nbsp;form.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;ID,&nbsp;status,&nbsp;update&nbsp;and&nbsp;creation&nbsp;dates,&nbsp;submission&nbsp;count&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_form_files"><strong>get_form_files</strong></a>(self, formID)</dt><dd><tt>List&nbsp;of&nbsp;files&nbsp;uploaded&nbsp;on&nbsp;a&nbsp;form.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Uploaded&nbsp;file&nbsp;information&nbsp;and&nbsp;URLs&nbsp;on&nbsp;a&nbsp;specific&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_form_properties"><strong>get_form_properties</strong></a>(self, formID)</dt><dd><tt>Get&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;properties&nbsp;on&nbsp;a&nbsp;form.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;properties&nbsp;like&nbsp;width,&nbsp;expiration&nbsp;date,&nbsp;style&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_form_property"><strong>get_form_property</strong></a>(self, formID, propertyKey)</dt><dd><tt>Get&nbsp;a&nbsp;specific&nbsp;property&nbsp;of&nbsp;the&nbsp;form.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;propertyKey&nbsp;(string):&nbsp;You&nbsp;can&nbsp;get&nbsp;property&nbsp;keys&nbsp;when&nbsp;you&nbsp;call&nbsp;/form/{id}/properties.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Given&nbsp;property&nbsp;key&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_form_question"><strong>get_form_question</strong></a>(self, formID, qid)</dt><dd><tt>Get&nbsp;details&nbsp;about&nbsp;a&nbsp;question<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;qid&nbsp;(string):&nbsp;Identifier&nbsp;for&nbsp;each&nbsp;question&nbsp;on&nbsp;a&nbsp;form.&nbsp;You&nbsp;can&nbsp;get&nbsp;a&nbsp;list&nbsp;of&nbsp;question&nbsp;IDs&nbsp;from&nbsp;/form/{id}/questions.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Question&nbsp;properties&nbsp;like&nbsp;required&nbsp;and&nbsp;validation.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_form_questions"><strong>get_form_questions</strong></a>(self, formID)</dt><dd><tt>Get&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;questions&nbsp;on&nbsp;a&nbsp;form.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Question&nbsp;properties&nbsp;of&nbsp;a&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_form_submissions"><strong>get_form_submissions</strong></a>(self, formID, offset<font color="#909090">=None</font>, limit<font color="#909090">=None</font>, filterArray<font color="#909090">=None</font>, order_by<font color="#909090">=None</font>)</dt><dd><tt>List&nbsp;of&nbsp;a&nbsp;form&nbsp;submissions.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;offset&nbsp;(string):&nbsp;Start&nbsp;of&nbsp;each&nbsp;result&nbsp;set&nbsp;for&nbsp;form&nbsp;list.&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;limit&nbsp;(string):&nbsp;Number&nbsp;of&nbsp;results&nbsp;in&nbsp;each&nbsp;result&nbsp;set&nbsp;for&nbsp;form&nbsp;list.&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;filterArray&nbsp;(array):&nbsp;Filters&nbsp;the&nbsp;query&nbsp;results&nbsp;to&nbsp;fetch&nbsp;a&nbsp;specific&nbsp;form&nbsp;range.(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;order_by&nbsp;(string):&nbsp;Order&nbsp;results&nbsp;by&nbsp;a&nbsp;form&nbsp;field&nbsp;name.&nbsp;(optional)<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Submissions&nbsp;of&nbsp;a&nbsp;specific&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_form_webhooks"><strong>get_form_webhooks</strong></a>(self, formID)</dt><dd><tt>Get&nbsp;list&nbsp;of&nbsp;webhooks&nbsp;for&nbsp;a&nbsp;form<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;formID&nbsp;(string):&nbsp;Form&nbsp;ID&nbsp;is&nbsp;the&nbsp;numbers&nbsp;you&nbsp;see&nbsp;on&nbsp;a&nbsp;form&nbsp;URL.&nbsp;You&nbsp;can&nbsp;get&nbsp;form&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/user/forms.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;webhooks&nbsp;for&nbsp;a&nbsp;specific&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_forms"><strong>get_forms</strong></a>(self, offset<font color="#909090">=None</font>, limit<font color="#909090">=None</font>, filterArray<font color="#909090">=None</font>, order_by<font color="#909090">=None</font>)</dt><dd><tt>Get&nbsp;a&nbsp;list&nbsp;of&nbsp;forms&nbsp;for&nbsp;this&nbsp;account<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;offset&nbsp;(string):&nbsp;Start&nbsp;of&nbsp;each&nbsp;result&nbsp;set&nbsp;for&nbsp;form&nbsp;list.&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;limit&nbsp;(string):&nbsp;Number&nbsp;of&nbsp;results&nbsp;in&nbsp;each&nbsp;result&nbsp;set&nbsp;for&nbsp;form&nbsp;list.&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;filterArray&nbsp;(array):&nbsp;Filters&nbsp;the&nbsp;query&nbsp;results&nbsp;to&nbsp;fetch&nbsp;a&nbsp;specific&nbsp;form&nbsp;range.(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;order_by&nbsp;(string):&nbsp;Order&nbsp;results&nbsp;by&nbsp;a&nbsp;form&nbsp;field&nbsp;name.&nbsp;(optional)<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Basic&nbsp;details&nbsp;such&nbsp;as&nbsp;title&nbsp;of&nbsp;the&nbsp;form,&nbsp;when&nbsp;it&nbsp;was&nbsp;created,&nbsp;number&nbsp;of&nbsp;new&nbsp;and&nbsp;total&nbsp;submissions.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_history"><strong>get_history</strong></a>(self)</dt><dd><tt>Get&nbsp;user&nbsp;activity&nbsp;log.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Activity&nbsp;log&nbsp;about&nbsp;things&nbsp;like&nbsp;forms&nbsp;created/modified/deleted,&nbsp;account&nbsp;logins&nbsp;and&nbsp;other&nbsp;operations.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_report"><strong>get_report</strong></a>(self, reportID)</dt><dd><tt>Get&nbsp;report&nbsp;details<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;reportID&nbsp;(string):&nbsp;You&nbsp;can&nbsp;get&nbsp;a&nbsp;list&nbsp;of&nbsp;reports&nbsp;from&nbsp;/user/reports.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Properties&nbsp;of&nbsp;a&nbsp;speceific&nbsp;report&nbsp;like&nbsp;fields&nbsp;and&nbsp;status.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_reports"><strong>get_reports</strong></a>(self)</dt><dd><tt>List&nbsp;of&nbsp;URLS&nbsp;for&nbsp;reports&nbsp;in&nbsp;this&nbsp;account.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Reports&nbsp;for&nbsp;all&nbsp;of&nbsp;the&nbsp;forms.&nbsp;ie.&nbsp;Excel,&nbsp;CSV,&nbsp;printable&nbsp;charts,&nbsp;embeddable&nbsp;HTML&nbsp;tables.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_settings"><strong>get_settings</strong></a>(self)</dt><dd><tt>Get&nbsp;user's&nbsp;settings&nbsp;for&nbsp;this&nbsp;account.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;User's&nbsp;time&nbsp;zone&nbsp;and&nbsp;language.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_submission"><strong>get_submission</strong></a>(self, sid)</dt><dd><tt>Get&nbsp;submission&nbsp;data<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sid&nbsp;(string):&nbsp;You&nbsp;can&nbsp;get&nbsp;submission&nbsp;IDs&nbsp;when&nbsp;you&nbsp;call&nbsp;/form/{id}/submissions.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Information&nbsp;and&nbsp;answers&nbsp;of&nbsp;a&nbsp;specific&nbsp;submission.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_submissions"><strong>get_submissions</strong></a>(self, offset<font color="#909090">=None</font>, limit<font color="#909090">=None</font>, filterArray<font color="#909090">=None</font>, order_by<font color="#909090">=None</font>)</dt><dd><tt>Get&nbsp;a&nbsp;list&nbsp;of&nbsp;submissions&nbsp;for&nbsp;this&nbsp;account.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;offset&nbsp;(string):&nbsp;Start&nbsp;of&nbsp;each&nbsp;result&nbsp;set&nbsp;for&nbsp;form&nbsp;list.&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;limit&nbsp;(string):&nbsp;Number&nbsp;of&nbsp;results&nbsp;in&nbsp;each&nbsp;result&nbsp;set&nbsp;for&nbsp;form&nbsp;list.&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;filterArray&nbsp;(array):&nbsp;Filters&nbsp;the&nbsp;query&nbsp;results&nbsp;to&nbsp;fetch&nbsp;a&nbsp;specific&nbsp;form&nbsp;range.(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;order_by&nbsp;(string):&nbsp;Order&nbsp;results&nbsp;by&nbsp;a&nbsp;form&nbsp;field&nbsp;name.&nbsp;(optional)<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Basic&nbsp;details&nbsp;such&nbsp;as&nbsp;title&nbsp;of&nbsp;the&nbsp;form,&nbsp;when&nbsp;it&nbsp;was&nbsp;created,&nbsp;number&nbsp;of&nbsp;new&nbsp;and&nbsp;total&nbsp;submissions.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_subusers"><strong>get_subusers</strong></a>(self)</dt><dd><tt>Get&nbsp;a&nbsp;list&nbsp;of&nbsp;sub&nbsp;users&nbsp;for&nbsp;this&nbsp;account.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;forms&nbsp;and&nbsp;form&nbsp;folders&nbsp;with&nbsp;access&nbsp;privileges.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_usage"><strong>get_usage</strong></a>(self)</dt><dd><tt>Get&nbsp;number&nbsp;of&nbsp;form&nbsp;submissions&nbsp;received&nbsp;this&nbsp;month.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;submissions,&nbsp;number&nbsp;of&nbsp;SSL&nbsp;form&nbsp;submissions,&nbsp;payment&nbsp;form&nbsp;submissions&nbsp;and&nbsp;upload&nbsp;space&nbsp;used&nbsp;by&nbsp;user.</tt></dd></dl>
+
+<dl><dt><a name="JotformAPIClient-get_user"><strong>get_user</strong></a>(self)</dt><dd><tt>Get&nbsp;user&nbsp;account&nbsp;details&nbsp;for&nbsp;a&nbsp;JotForm&nbsp;user.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;User&nbsp;account&nbsp;type,&nbsp;avatar&nbsp;URL,&nbsp;name,&nbsp;email,&nbsp;website&nbsp;URL&nbsp;and&nbsp;account&nbsp;limits.</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__author__</strong> = 'canerbalci@gmail.com (Caner Balci)'</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">canerbalci@gmail.com&nbsp;(Caner&nbsp;Balci)</td></tr></table>
+</body></html>
