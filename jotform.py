@@ -17,6 +17,7 @@ class JotformAPIClient:
 
         self.baseUrl = "http://api.jotform.com/"
         self.apiVersion = "v1"
+
         self.apiKey = apiKey
         self.debugMode = debug
         self.outputType = outputType
@@ -28,6 +29,7 @@ class JotformAPIClient:
     def fetch_url(self, url, params=None, method=None):
 
         url = self.baseUrl + self.apiVersion + url
+
         self._log('fetching url ' + url)
 
         headers = {
@@ -43,6 +45,21 @@ class JotformAPIClient:
 
         if (method == "DELETE"):
             req.get_method = lambda: 'DELETE'
+
+        response = urllib2.urlopen(req)
+        responseObject = json.loads(response.read())
+
+        return responseObject["content"]
+
+    def executePutRequest(self, url, params):
+        url = self.baseUrl + self.apiVersion + url
+
+        headers = {
+            'apiKey': self.apiKey
+        }
+
+        req = urllib2.Request(url, headers=headers, data=params)
+        req.get_method = lambda: 'PUT'
 
         response = urllib2.urlopen(req)
         responseObject = json.loads(response.read())
@@ -431,4 +448,112 @@ class JotformAPIClient:
 
         path = "/form/" + formID + "/question/" + qid
         return self.fetch_url(path, None, "DELETE")
+
+    def create_form_question(self, formID, question):
+        """Add new question to specified form.
+
+        Args:
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+            question (array): New question properties like type and text.
+
+        Returns:
+            Properties of new question.
+        """
+        params = {}
+
+        for key in question.keys():
+            params['question[' + key + ']'] = question[key]
+
+        path = "/form/" + formID + "/questions"
+        return self.fetch_url(path, params)
+
+    def create_form_questions(self, formID, questions):
+        """Add new questions to specified form.
+
+        Args:
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+            questions (json): New question properties like type and text.
+
+        Returns:
+            Properties of new question.
+        """
+        path = "/form/" + formID + "/questions"
+        return self.executePutRequest(path, questions)
+
+    def edit_form_question(self, formID, qid, question_properties):
+        """Add or edit a single question properties.
+
+        Args:
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+            qid (string): Identifier for each question on a form. You can get a list of question IDs from /form/{id}/questions.
+            question_properties (array): New question properties like type and text.
+
+        Returns:
+            Edited property and type of question.
+        """
+        question = {}
+
+        for key in question_properties.keys():
+            question['question[' + key + ']'] = question_properties[key]
+
+        path = "/form/" + formID + "/questions"
+        return self.fetch_url(path, question)
+
+    def set_form_properties(self, formID, form_properties):
+        """Add or edit properties of a specific form
+
+        Args:
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+            form_properties (array): New properties like label width.
+
+        Returns:
+            Edited properties.
+        """
+        properties = {}
+
+        for key in form_properties.keys():
+            properties['properties[' + key + ']'] = form_properties[key]
+
+        path = "/form/" + formID + "/properties"
+        return self.fetch_url(path, properties)
+
+    def set_multiple_form_properties(self, formID, form_properties):
+        """Add or edit properties of a specific form
+
+        Args:
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+            form_properties (json): New properties like label width.
+
+        Returns:
+            Edited properties.
+        """
+        path = "/form/" + formID + "/properties"
+        return self.executePutRequest(path, form_properties)
+
+    def create_form(self, form):
+        """ Create a new form
+
+        Args:
+            form (json): Questions, properties and emails of new form.
+
+        Returns:
+            New form.
+        """
+        path = "/user/forms"
+        return self.executePutRequest(path, form)
+
+    def delete_form(self, formID):
+        """Delete a specific form
+
+        Args:
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+
+        Returns:
+            Properties of deleted form.
+        """
+        path = "/form/" + formID
+        return self.fetch_url(path, None, "DELETE")
+
+
+
         
