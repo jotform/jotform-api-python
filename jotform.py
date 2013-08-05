@@ -496,7 +496,7 @@ class JotformAPIClient:
         for key in question_properties.keys():
             question['question[' + key + ']'] = question_properties[key]
 
-        path = "/form/" + formID + "/questions"
+        path = "/form/" + formID + "/question/" + qid
         return self.fetch_url(path, question)
 
     def set_form_properties(self, formID, form_properties):
