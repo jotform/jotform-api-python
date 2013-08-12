@@ -67,16 +67,15 @@ class JotformAPIClient:
         return responseObject["content"]
 
     def create_conditions(self, offset, limit, filterArray, order_by):
+        args = {'offset': offset, 'limit': limit, 'filter': filterArray, 'orderBy': order_by}
         params = {}
 
-        if (offset):
-            params["offset"] = offset
-        if (limit):
-            params["limit"] = limit
-        if (filterArray):
-            params["filter"] = json.dumps(filterArray)
-        if (order_by):
-            params["order_by"] = order_by
+        for key in args.keys():
+            if(args[key]):
+                if(key == 'filter'):
+                    params[key] = json.dumps(args[key])
+                else:
+                    params[key] = args[key]
 
         return params
 
