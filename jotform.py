@@ -80,6 +80,17 @@ class JotformAPIClient:
 
         return params
 
+    def create_history_query(self, action, date, sortBy, startDate, endDate):
+        args = {'action': action, 'date': date, 'sortBy': sortBy, 'startDate': startDate, 'endDate': endDate}
+        params = {}
+
+        for key in args.keys():
+            if (args[key]):
+                params[key] = args[key]
+
+        return params
+
+
     def get_user(self):
         """Get user account details for a JotForm user.
 
@@ -183,14 +194,26 @@ class JotformAPIClient:
         path = "/user/settings"
         return self.fetch_url(path)
 
-    def get_history(self):
+    def get_history(self, action=None, date=None, sortBy=None, startDate=None, endDate=None):
         """Get user activity log.
+
+        Args: 
+            action (enum): Filter results by activity performed. Default is 'all'.
+            date (enum): Limit results by a date range. If you'd like to limit results by specific dates you can use startDate and endDate fields instead.
+            sortBy (enum): Lists results by ascending and descending order.
+            startDate (string): Limit results to only after a specific date. Format: MM/DD/YYYY.
+            endDate (string): Limit results to only before a specific date. Format: MM/DD/YYYY.
 
         Returns:
             Activity log about things like forms created/modified/deleted, account logins and other operations.
         """
 
+        params = self.create_history_query(action, date, sortBy, startDate, endDate)
         path = "/user/history"
+
+        if (params):
+            path = path + "?" + urllib.urlencode(params)
+
         return self.fetch_url(path)
 
     def get_form(self, formID):
