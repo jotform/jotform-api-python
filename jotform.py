@@ -36,30 +36,19 @@ class JotformAPIClient:
             'apiKey': self.apiKey
         }
 
-        if (params):
-            data = urllib.urlencode(params)
-        else:
-            data = None
-
-        req = urllib2.Request(url, headers=headers, data=data)
-
-        if (method == "DELETE"):
+        if (method == "GET" or method == "POST"):
+            if (params):
+                data = urllib.urlencode(params)
+            else:
+                data = None
+            req = urllib2.Request(url, headers=headers, data=data)
+        elif (method == "DELETE"):
+            req = urllib2.Request(url, headers=headers, data=data)
             req.get_method = lambda: 'DELETE'
-
-        response = urllib2.urlopen(req)
-        responseObject = json.loads(response.read())
-
-        return responseObject["content"]
-
-    def executePutRequest(self, url, params):
-        url = self.baseUrl + self.apiVersion + url
-
-        headers = {
-            'apiKey': self.apiKey
-        }
-
-        req = urllib2.Request(url, headers=headers, data=params)
-        req.get_method = lambda: 'PUT'
+        elif (method == "PUT"):
+            print params
+            req = urllib2.Request(url, headers=headers, data=params)
+            req.get_method = lambda: 'PUT'
 
         response = urllib2.urlopen(req)
         responseObject = json.loads(response.read())
@@ -88,7 +77,6 @@ class JotformAPIClient:
                 params[key] = args[key]
 
         return params
-
 
     def get_user(self):
         """Get user account details for a JotForm user.
@@ -500,7 +488,7 @@ class JotformAPIClient:
             Properties of new question.
         """
         path = "/form/" + formID + "/questions"
-        return self.executePutRequest(path, questions)
+        return self.fetch_url(path, questions, "PUT")
 
     def edit_form_question(self, formID, qid, question_properties):
         """Add or edit a single question properties.
@@ -550,7 +538,7 @@ class JotformAPIClient:
             Edited properties.
         """
         path = "/form/" + formID + "/properties"
-        return self.executePutRequest(path, form_properties)
+        return self.fetch_url(path, form_properties, "PUT")
 
     def create_form(self, form):
         """ Create a new form
@@ -562,7 +550,7 @@ class JotformAPIClient:
             New form.
         """
         path = "/user/forms"
-        return self.executePutRequest(path, form)
+        return self.fetch_url(path, form, "PUT")
 
     def delete_form(self, formID):
         """Delete a specific form
@@ -575,7 +563,5 @@ class JotformAPIClient:
         """
         path = "/form/" + formID
         return self.fetch_url(path, None, "DELETE")
-
-
 
         
