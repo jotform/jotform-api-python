@@ -13,10 +13,10 @@ import json
 
 class JotformAPIClient:
 
-    def __init__(self, apiKey, debug=False, outputType="json"):
+    def __init__(self, apiKey, outputType='json', debug=False):
 
-        self.baseUrl = "http://api.jotform.com/"
-        self.apiVersion = "v1"
+        self.baseUrl = 'http://api.jotform.com/'
+        self.apiVersion = 'v1'
 
         self.apiKey = apiKey
         self.debugMode = debug
@@ -27,6 +27,8 @@ class JotformAPIClient:
             print message
 
     def fetch_url(self, url, params=None, method=None):
+        if(self.outputType != 'json'):
+            url = url + '.xml'
 
         url = self.baseUrl + self.apiVersion + url
 
@@ -37,6 +39,9 @@ class JotformAPIClient:
         }
 
         if (method == "GET"):
+            if (params):
+                url = url + "?" + urllib.urlencode(params)
+
             req = urllib2.Request(url, headers=headers, data=None)
         elif (method == "POST"):
             if (params):
@@ -112,12 +117,7 @@ class JotformAPIClient:
 
         params = self.create_conditions(offset, limit, filterArray, order_by)
 
-        path = "/user/forms"
-
-        if (params):
-            path = path + "?" + urllib.urlencode(params)
-
-        return self.fetch_url(path, method='GET')
+        return self.fetch_url('/user/forms', params, 'GET')
 
     def get_submissions(self, offset=None, limit=None, filterArray=None, order_by=None):
         """Get a list of submissions for this account.
@@ -133,13 +133,8 @@ class JotformAPIClient:
         """
 
         params = self.create_conditions(offset, limit, filterArray, order_by)
-
-        path = "/user/submissions"
-
-        if (params):
-            path = path + "?" + urllib.urlencode(params)
             
-        return self.fetch_url(path, method='GET')
+        return self.fetch_url('user/submissions', params, 'GET')
 
     def get_subusers(self):
         """Get a list of sub users for this account.
@@ -192,12 +187,8 @@ class JotformAPIClient:
         """
 
         params = self.create_history_query(action, date, sortBy, startDate, endDate)
-        path = "/user/history"
 
-        if (params):
-            path = path + "?" + urllib.urlencode(params)
-
-        return self.fetch_url(path, method='GET')
+        return self.fetch_url('/user/history', params, 'GET')
 
     def get_form(self, formID):
         """Get basic information about a form.
@@ -251,12 +242,7 @@ class JotformAPIClient:
 
         params = self.create_conditions(offset, limit, filterArray, order_by)
 
-        path = "/form/" + formID + "/submissions"
-
-        if (params):
-            path = path + "?" + urllib.urlencode(params)
-
-        return self.fetch_url(path, method='GET')
+        return self.fetch_url('/form/" + formID + "/submissions', params, 'GET')
 
     def create_form_submissions(self, formID, submission):
         """Submit data to this form using the API.
@@ -314,9 +300,7 @@ class JotformAPIClient:
             List of webhooks for a specific form.
         """
 
-        params = {
-            'webhookURL': webhookURL
-        }
+        params = {'webhookURL': webhookURL}
 
         return self.fetch_url('/form/' + formID + '/webhooks', params, 'POST')
 
