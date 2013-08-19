@@ -38,21 +38,21 @@ class JotformAPIClient:
             'apiKey': self.apiKey
         }
 
-        if (method == "GET"):
+        if (method == 'GET'):
             if (params):
-                url = url + "?" + urllib.urlencode(params)
+                url = url + '?' + urllib.urlencode(params)
 
             req = urllib2.Request(url, headers=headers, data=None)
-        elif (method == "POST"):
+        elif (method == 'POST'):
             if (params):
                 data = urllib.urlencode(params)
             else:
                 data = None
             req = urllib2.Request(url, headers=headers, data=data)
-        elif (method == "DELETE"):
+        elif (method == 'DELETE'):
             req = urllib2.Request(url, headers=headers, data=None)
             req.get_method = lambda: 'DELETE'
-        elif (method == "PUT"):
+        elif (method == 'PUT'):
             req = urllib2.Request(url, headers=headers, data=params)
             req.get_method = lambda: 'PUT'
 
@@ -60,7 +60,7 @@ class JotformAPIClient:
 
         if (self.outputType == 'json'):
             responseObject = json.loads(response.read())
-            return responseObject["content"]
+            return responseObject['content']
         else:
             data = response.read()
             response.close()
@@ -399,8 +399,8 @@ class JotformAPIClient:
         sub = {}
 
         for key in submission.keys():
-            if "_" in key:
-                sub['submission[' + key[0:key.find("_")] + '][' + key[key.find("_")+1:len(key)] + ']'] = submission[key]
+            if '_' in key:
+                sub['submission[' + key[0:key.find('_')] + '][' + key[key.find('_')+1:len(key)] + ']'] = submission[key]
             else:
                 sub['submission[' + key + ']'] = submission[key]
                
