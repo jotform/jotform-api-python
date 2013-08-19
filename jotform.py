@@ -20,7 +20,7 @@ class JotformAPIClient:
 
         self.apiKey = apiKey
         self.debugMode = debug
-        self.outputType = outputType
+        self.outputType = outputType.lower()
 
     def _log(self, message):
         if self.debugMode:
