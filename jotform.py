@@ -252,7 +252,7 @@ class JotformAPIClient:
 
         return self.fetch_url('/form/" + formID + "/submissions', params, 'GET')
 
-    def create_form_submissions(self, formID, submission):
+    def create_form_submission(self, formID, submission):
         """Submit data to this form using the API.
 
         Args:
