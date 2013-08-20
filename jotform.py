@@ -510,7 +510,7 @@ class JotformAPIClient:
 
         return self.fetch_url('/form/' + formID + '/properties', form_properties, 'PUT')
 
-    def create_form(self, form):
+    def create_forms(self, form):
         """ Create a new form
 
         Args:
