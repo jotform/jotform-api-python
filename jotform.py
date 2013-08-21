@@ -181,6 +181,15 @@ class JotformAPIClient:
         return self.fetch_url('/user/settings', method='GET')
 
     def update_settings(self, settings):
+        """Update user's settings.
+
+        Args:
+            settings (array): New user setting values with setting keys
+
+        Returns:
+            Changes on user settings.
+        """
+
         return self.fetch_url('/user/settings', settings, 'POST')
 
     def get_history(self, action=None, date=None, sortBy=None, startDate=None, endDate=None):
