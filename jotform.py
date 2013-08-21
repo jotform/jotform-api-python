@@ -324,6 +324,19 @@ class JotformAPIClient:
 
         return self.fetch_url('/form/' + formID + '/webhooks', params, 'POST')
 
+    def delete_form_webhook(self, formID, webhookID):
+        """Delete a specific webhook of a form.
+
+        Args:
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+            webhookID (string): You can get webhook IDs when you call /form/{formID}/webhooks.
+
+        Returns:
+            Remaining webhook URLs of form.
+        """
+
+        return self.fetch_url('/form/' + formID + '/webhooks/' + webhookID, None, 'DELETE')
+
     def get_submission(self, sid):
         """Get submission data
 
