@@ -285,6 +285,19 @@ class JotformAPIClient:
 
         return self.fetch_url('/form/' + formID + '/submissions', sub, 'POST')
 
+    def create_form_submissions(self, formID, submissions):
+        """Submit data to this form using the API.
+
+        Args:
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+            submission (json): Submission data with question IDs.
+
+        Returns:
+            Posted submission ID and URL.
+        """
+
+        return self.fetch_url('/form/' + formID + '/submissions', submissions, 'PUT')
+
     def get_form_files(self, formID):
         """List of files uploaded on a form.
 
