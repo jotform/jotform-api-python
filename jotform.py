@@ -510,6 +510,22 @@ class JotformAPIClient:
 
         return self.fetch_url('/form/' + formID + '/properties', form_properties, 'PUT')
 
+    def create_form(self, form):
+        params = {}
+
+        for key in form.keys():
+            value = form[key]
+            for k in value.keys():
+                if (key == 'properties'):
+                    for k in value.keys():
+                        params[key + '[' + k + ']'] = value[k]
+                else:
+                    v = value[k]
+                    for a in v.keys():
+                        params[key + '[' + k + '][' + a + ']'] =v[a]
+
+        return self.fetch_url('/user/forms', params, 'POST')
+
     def create_forms(self, form):
         """ Create a new form
 
