@@ -15,7 +15,7 @@ class JotformAPIClient:
 
     def __init__(self, apiKey, outputType='json', debug=False):
 
-        self.baseUrl = 'http://api.jotform.com/'
+        self.baseUrl = 'https://api.jotform.com/'
         self.apiVersion = 'v1'
 
         self.apiKey = apiKey
