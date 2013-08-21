@@ -517,12 +517,12 @@ class JotformAPIClient:
         """ Create a new form
 
         Args:
-            form (json): Questions, properties and emails of new form.
+            form (array): Questions, properties and emails of new form.
 
         Returns:
             New form.
         """
-        
+
         params = {}
 
         for key in form.keys():
@@ -539,13 +539,13 @@ class JotformAPIClient:
         return self.fetch_url('/user/forms', params, 'POST')
 
     def create_forms(self, form):
-        """ Create a new form
+        """ Create new forms
 
         Args:
-            form (json): Questions, properties and emails of new form.
+            form (json): Questions, properties and emails of forms.
 
         Returns:
-            New form.
+            New forms.
         """
 
         return self.fetch_url('/user/forms', form, 'PUT')
