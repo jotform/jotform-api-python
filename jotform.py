@@ -180,6 +180,9 @@ class JotformAPIClient:
         
         return self.fetch_url('/user/settings', method='GET')
 
+    def update_settings(self, settings):
+        return self.fetch_url('/user/settings', settings, 'POST')
+
     def get_history(self, action=None, date=None, sortBy=None, startDate=None, endDate=None):
         """Get user activity log.
 
