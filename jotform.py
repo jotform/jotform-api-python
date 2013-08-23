@@ -597,4 +597,16 @@ class JotformAPIClient:
 
         return self.fetch_url('/form/' + formID, None, 'DELETE')
 
+    def register_user(self, userDetails):
+        """Register with username, password and email
+
+        Args:
+            userDetails (array): Username, password and email to register a new user
+
+        Returns:
+            New user's details
+        """
+
+        return self.fetch_url('/user/register', userDetails, 'POST')
+        
         
