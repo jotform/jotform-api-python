@@ -1,10 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Jotform API Wrapper
-# copyright : Interlogy LLC
+# JotForm API - Python Client
 #
-__author__ = "canerbalci@gmail.com (Caner Balci)"
+# copyright : 2013 Interlogy, LLC.
+# link : http://www.jotform.com
+# version : 1.0
+# package : JotFormAPI 
 
 import urllib
 import urllib2
