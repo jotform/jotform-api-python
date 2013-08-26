@@ -608,5 +608,17 @@ class JotformAPIClient:
         """
 
         return self.fetch_url('/user/register', userDetails, 'POST')
-        
+
+    def login_user(self, credentials):
+        """Login user with given credentials
+
+        Args:
+            credentials (array): Username, password, application name and access type of user
+
+        Returns:
+            Logged in user's settings and app key
+        """
+
+        return self.fetch_url('/user/login', credentials, 'POST')
+
         
