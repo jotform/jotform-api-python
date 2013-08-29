@@ -14,30 +14,43 @@ import json
 from xml.dom.minidom import parseString
 
 class JotformAPIClient:
+    __baseUrl = 'https://api.jotform.com/'
+    __apiVersion = 'v1'
 
+    __apiKey = None
+    __debugMode = False
+    __outputType = "json"
+    
     def __init__(self, apiKey='', outputType='json', debug=False):
 
-        self.baseUrl = 'https://api.jotform.com/'
-        self.apiVersion = 'v1'
-
-        self.apiKey = apiKey
-        self.debugMode = debug
-        self.outputType = outputType.lower()
+        self.__apiKey = apiKey
+        self.__debugMode = debug
+        self.__outputType = outputType.lower()
 
     def _log(self, message):
-        if self.debugMode:
+        if self.__debugMode:
             print message
 
+    def get_debugMode(self):
+        return self.__debugMode
+    def set_debugMode(self, value):
+        self.__debugMode = value
+
+    def get_outputType(self):
+        return self.__outputType
+    def set_outputType(self, value):
+        self.__outputType = value
+
     def fetch_url(self, url, params=None, method=None):
-        if(self.outputType != 'json'):
+        if(self.__outputType != 'json'):
             url = url + '.xml'
 
-        url = self.baseUrl + self.apiVersion + url
+        url = self.__baseUrl + self.__apiVersion + url
 
         self._log('fetching url ' + url)
 
         headers = {
-            'apiKey': self.apiKey
+            'apiKey': self.__apiKey
         }
 
         if (method == 'GET'):
@@ -60,7 +73,7 @@ class JotformAPIClient:
 
         response = urllib2.urlopen(req)
 
-        if (self.outputType == 'json'):
+        if (self.__outputType == 'json'):
             responseObject = json.loads(response.read())
             return responseObject['content']
         else:
