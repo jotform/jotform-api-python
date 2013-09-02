@@ -426,6 +426,18 @@ class JotformAPIClient:
 
         return self.fetch_url('/form/' + formID + '/properties/' + propertyKey, method='GET')
 
+    def get_form_reports(self, formID):
+        """Get all the reports of a form, such as excel, csv, grid, html, etc.
+
+        Args:
+            formID (string): Forim ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+
+        Returns:
+            List of all reports in a form, and other details about the reports such as title.
+        """
+
+        return self.fetch_url('/form/' + formID + '/reports', method='GET')
+
     def delete_submission(self, sid):
         """Delete a single submission.
 
