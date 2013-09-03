@@ -430,7 +430,7 @@ class JotformAPIClient:
         """Get all the reports of a form, such as excel, csv, grid, html, etc.
 
         Args:
-            formID (string): Forim ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
 
         Returns:
             List of all reports in a form, and other details about the reports such as title.
