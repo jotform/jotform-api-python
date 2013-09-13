@@ -648,4 +648,16 @@ class JotformAPIClient:
 
         return self.fetch_url('/user/login', credentials, 'POST')
 
+    def get_plan(self, plan_name):
+        """Get details of a plan
+
+        Args:
+            plan_name (string): Name of the requested plan. FREE, PREMIUM etc.
+
+        Returns:
+            Details of a plan
+        """
+
+        return self.fetch_url('/system/plan/' + plan_name, method='GET')
+
         
