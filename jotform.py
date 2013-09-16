@@ -438,6 +438,18 @@ class JotformAPIClient:
 
         return self.fetch_url('/form/' + formID + '/reports', method='GET')
 
+    def create_report(self, formID, report):
+        """Create new report of a form
+
+        Args:
+            formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+            report (array): Report details. List type, title etc.
+
+        Returns:
+            Report details and URL
+        """
+        return self.fetch_url('/form/' + formID + '/reports', report, 'POST')
+
     def delete_submission(self, sid):
         """Delete a single submission.
 
