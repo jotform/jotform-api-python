@@ -48,6 +48,8 @@ class JotformAPIClient:
         url = self.__baseUrl + self.__apiVersion + url
 
         self._log('fetching url ' + url)
+        if (params):
+            self._log('params ' + params)
 
         headers = {
             'apiKey': self.__apiKey
