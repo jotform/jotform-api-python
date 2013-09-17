@@ -72,9 +72,9 @@ class JotformAPIClient:
             req.get_method = lambda: 'PUT'
 
         response = urllib2.urlopen(req)
+        responseObject = json.loads(response.read())
 
         if (self.__outputType == 'json'):
-            responseObject = json.loads(response.read())
             return responseObject['content']
         else:
             data = response.read()
@@ -85,7 +85,7 @@ class JotformAPIClient:
             return responseObject
 
     def create_conditions(self, offset, limit, filterArray, order_by):
-        args = {'offset': offset, 'limit': limit, 'filter': filterArray, 'orderBy': order_by}
+        args = {'offset': offset, 'limit': limit, 'filter': filterArray, 'orderby': order_by}
         params = {}
 
         for key in args.keys():
