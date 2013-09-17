@@ -49,7 +49,7 @@ class JotformAPIClient:
 
         self._log('fetching url ' + url)
         if (params):
-            self._log('params ' + params)
+            self._log(params)
 
         headers = {
             'apiKey': self.__apiKey
@@ -478,7 +478,7 @@ class JotformAPIClient:
         sub = {}
 
         for key in submission.keys():
-            if '_' in key:
+            if '_' in key and key != "created_at":
                 sub['submission[' + key[0:key.find('_')] + '][' + key[key.find('_')+1:len(key)] + ']'] = submission[key]
             else:
                 sub['submission[' + key + ']'] = submission[key]
