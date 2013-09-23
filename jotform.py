@@ -74,17 +74,14 @@ class JotformAPIClient:
             req.get_method = lambda: 'PUT'
 
         response = urllib2.urlopen(req)
-        responseObject = json.loads(response.read())
 
         if (self.__outputType == 'json'):
+            responseObject = json.loads(response.read())
             return responseObject['content']
         else:
             data = response.read()
             response.close()
-            dom = parseString(data)
-            xmlTag = dom.getElementsByTagName('root')[0].toxml()
-            responseObject=xmlTag.replace('<root>','').replace('</root>','')
-            return responseObject
+            return data
 
     def create_conditions(self, offset, limit, filterArray, order_by):
         args = {'offset': offset, 'limit': limit, 'filter': filterArray, 'orderby': order_by}
