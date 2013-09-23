@@ -159,7 +159,7 @@ class JotformAPIClient:
 
         params = self.create_conditions(offset, limit, filterArray, order_by)
             
-        return self.fetch_url('user/submissions', params, 'GET')
+        return self.fetch_url('/user/submissions', params, 'GET')
 
     def get_subusers(self):
         """Get a list of sub users for this account.
