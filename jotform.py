@@ -659,6 +659,15 @@ class JotformAPIClient:
 
         return self.fetch_url('/user/login', credentials, 'POST')
 
+    def logout_user(self):
+        """Logout user
+
+        Returns:
+            Status of request
+        """
+        
+        return self.fetch_url('/user/logout', method='GET')
+
     def get_plan(self, plan_name):
         """Get details of a plan
 
