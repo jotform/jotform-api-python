@@ -680,4 +680,14 @@ class JotformAPIClient:
 
         return self.fetch_url('/system/plan/' + plan_name, method='GET')
 
-        
+    def delete_report(self, reportID):
+        """Delete a specific report
+
+        Args:
+            reportID (string): You can get a list of reports from /user/reports.
+
+        Returns:
+            Status of request.
+        """
+
+        return self.fetch_url('/report/' + reportID, None, 'DELETE')
