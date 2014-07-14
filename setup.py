@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="jotform",
-    url='http://api.jotform.com/docs/'
+    url='http://api.jotform.com/docs/',
     version='1.0',
     description='JotForm API - Python Client',
     author='JotForm',
