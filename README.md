@@ -12,6 +12,10 @@ Install via git clone:
         
 Install via pip:
 
+        $ pip install jotform
+        
+Install via pip (latest version)
+
         $ pip install git+git://github.com/jotform/jotform-api-python.git
 
 ### Documentation
