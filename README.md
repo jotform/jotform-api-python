@@ -28,6 +28,12 @@ JotForm API requires API key for all user related calls. You can create your API
 
 ### Examples
 
+The following examples are aimed towards users using the main JotForm API endpoint at `api.jotform.com`.
+
+NB. If you are located in Europe, use the following code to instantiate the client:
+
+    jotformAPIClient = JotformAPIClient(apiKey='YOUR API KEY', baseUrl='https://eu-api.jotform.com/')
+
 Print all forms of the user
 
 ```python
