@@ -31,6 +31,9 @@ class JotformAPIClient:
         if self.__debugMode:
             print message
 
+    def set_baseurl(self, baseurl):
+        self.__baseUrl = baseurl
+
     def get_debugMode(self):
         return self.__debugMode
     def set_debugMode(self, value):
