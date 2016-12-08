@@ -14,15 +14,16 @@ import json
 from xml.dom.minidom import parseString
 
 class JotformAPIClient:
-    __baseUrl = 'https://api.jotform.com/'
+    __baseUrl = None
     __apiVersion = 'v1'
 
     __apiKey = None
     __debugMode = False
     __outputType = "json"
     
-    def __init__(self, apiKey='', outputType='json', debug=False):
+    def __init__(self, apiKey='', outputType='json', baseUrl='https://api.jotform.com/', debug=False):
 
+        self.__baseUrl = baseUrl
         self.__apiKey = apiKey
         self.__debugMode = debug
         self.__outputType = outputType.lower()
