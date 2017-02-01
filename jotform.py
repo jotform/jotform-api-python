@@ -81,7 +81,7 @@ class JotformAPIClient:
         response = urllib.request.urlopen(req)
 
         if (self.__outputType == 'json'):
-            responseObject = json.loads(response.read())
+            responseObject = json.loads(response.read().decode('utf-8'))
             return responseObject['content']
         else:
             data = response.read()
