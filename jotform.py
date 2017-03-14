@@ -67,7 +67,7 @@ class JotformAPIClient:
             req = urllib.request.Request(url, headers=headers, data=None)
         elif (method == 'POST'):
             if (params):
-                data = urllib.parse.urlencode(params)
+                data = urllib.parse.urlencode(params).encode('utf-8')
             else:
                 data = None
             req = urllib.request.Request(url, headers=headers, data=data)
