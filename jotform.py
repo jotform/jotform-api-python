@@ -6,30 +6,32 @@
 # copyright : 2013 Interlogy, LLC.
 # link : http://www.jotform.com
 # version : 1.0
-# package : JotFormAPI 
+# package : JotFormAPI
 
-import urllib
-import urllib2
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
 import json
 from xml.dom.minidom import parseString
 
 class JotformAPIClient:
-    __baseUrl = 'https://api.jotform.com/'
+    DEFAULT_BASE_URL = 'https://api.jotform.com/'
+    EU_BASE_URL = 'https://eu-api.jotform.com/'
+
     __apiVersion = 'v1'
 
     __apiKey = None
     __debugMode = False
     __outputType = "json"
-    
-    def __init__(self, apiKey='', outputType='json', debug=False):
 
+    def __init__(self, apiKey='', baseUrl=DEFAULT_BASE_URL, outputType='json', debug=False):
         self.__apiKey = apiKey
-        self.__debugMode = debug
+        self.__baseUrl = baseUrl
         self.__outputType = outputType.lower()
+        self.__debugMode = debug
 
     def _log(self, message):
         if self.__debugMode:
-            print message
+            print(message)
 
     def set_baseurl(self, baseurl):
         self.__baseUrl = baseurl
@@ -60,26 +62,26 @@ class JotformAPIClient:
 
         if (method == 'GET'):
             if (params):
-                url = url + '?' + urllib.urlencode(params)
+                url = url + '?' + urllib.parse.urlencode(params)
 
-            req = urllib2.Request(url, headers=headers, data=None)
+            req = urllib.request.Request(url, headers=headers, data=None)
         elif (method == 'POST'):
             if (params):
-                data = urllib.urlencode(params)
+                data = urllib.parse.urlencode(params).encode('utf-8')
             else:
                 data = None
-            req = urllib2.Request(url, headers=headers, data=data)
+            req = urllib.request.Request(url, headers=headers, data=data)
         elif (method == 'DELETE'):
-            req = urllib2.Request(url, headers=headers, data=None)
+            req = urllib.request.Request(url, headers=headers, data=None)
             req.get_method = lambda: 'DELETE'
         elif (method == 'PUT'):
-            req = urllib2.Request(url, headers=headers, data=params)
+            req = urllib.request.Request(url, headers=headers, data=params)
             req.get_method = lambda: 'PUT'
 
-        response = urllib2.urlopen(req)
+        response = urllib.request.urlopen(req)
 
         if (self.__outputType == 'json'):
-            responseObject = json.loads(response.read())
+            responseObject = json.loads(response.read().decode('utf-8'))
             return responseObject['content']
         else:
             data = response.read()
@@ -90,7 +92,7 @@ class JotformAPIClient:
         args = {'offset': offset, 'limit': limit, 'filter': filterArray, 'orderby': order_by}
         params = {}
 
-        for key in args.keys():
+        for key in list(args.keys()):
             if(args[key]):
                 if(key == 'filter'):
                     params[key] = json.dumps(args[key])
@@ -103,7 +105,7 @@ class JotformAPIClient:
         args = {'action': action, 'date': date, 'sortBy': sortBy, 'startDate': startDate, 'endDate': endDate}
         params = {}
 
-        for key in args.keys():
+        for key in list(args.keys()):
             if (args[key]):
                 params[key] = args[key]
 
@@ -124,7 +126,7 @@ class JotformAPIClient:
         Returns:
             Number of submissions, number of SSL form submissions, payment form submissions and upload space used by user.
         """
-        
+
         return self.fetch_url('/user/usage', method='GET')
 
     def get_forms(self, offset=None, limit=None, filterArray=None, order_by=None):
@@ -158,7 +160,7 @@ class JotformAPIClient:
         """
 
         params = self.create_conditions(offset, limit, filterArray, order_by)
-            
+
         return self.fetch_url('/user/submissions', params, 'GET')
 
     def get_subusers(self):
@@ -194,7 +196,7 @@ class JotformAPIClient:
         Returns:
             User's time zone and language.
         """
-        
+
         return self.fetch_url('/user/settings', method='GET')
 
     def update_settings(self, settings):
@@ -212,7 +214,7 @@ class JotformAPIClient:
     def get_history(self, action=None, date=None, sortBy=None, startDate=None, endDate=None):
         """Get user activity log.
 
-        Args: 
+        Args:
             action (enum): Filter results by activity performed. Default is 'all'.
             date (enum): Limit results by a date range. If you'd like to limit results by specific dates you can use startDate and endDate fields instead.
             sortBy (enum): Lists results by ascending and descending order.
@@ -344,7 +346,7 @@ class JotformAPIClient:
 
         Args:
             formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
-            webhookURL (string): Webhook URL is where form data will be posted when form is submitted. 
+            webhookURL (string): Webhook URL is where form data will be posted when form is submitted.
 
         Returns:
             List of webhooks for a specific form.
@@ -482,12 +484,12 @@ class JotformAPIClient:
                 sub['submission[' + key[0:key.find('_')] + '][' + key[key.find('_')+1:len(key)] + ']'] = submission[key]
             else:
                 sub['submission[' + key + ']'] = submission[key]
-               
+
         return self.fetch_url('/submission/' + sid, sub, 'POST')
 
     def clone_form(self, formID):
         """Clone a single form.
-        
+
         Args:
             formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
 
@@ -495,7 +497,7 @@ class JotformAPIClient:
             Status of request.
         """
         params = {"method": "post"}
-        
+
         return self.fetch_url('/form/' + formID + '/clone', params, 'POST')
 
     def delete_form_question(self, formID, qid):
@@ -668,7 +670,7 @@ class JotformAPIClient:
         Returns:
             Status of request
         """
-        
+
         return self.fetch_url('/user/logout', method='GET')
 
     def get_plan(self, plan_name):
