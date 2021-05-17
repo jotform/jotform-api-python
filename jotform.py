@@ -3,7 +3,7 @@
 #
 # JotForm API - Python Client
 #
-# copyright : 2013 Interlogy, LLC.
+# copyright : 2020 JotForm, Inc.
 # link : http://www.jotform.com
 # version : 1.0
 # package : JotFormAPI
