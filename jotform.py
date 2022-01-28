@@ -9,9 +9,7 @@
 # package : JotFormAPI
 
 import urllib.request, urllib.parse, urllib.error
-import urllib.request, urllib.error, urllib.parse
 import json
-from xml.dom.minidom import parseString
 
 class JotformAPIClient:
     DEFAULT_BASE_URL = 'https://api.jotform.com/'
