@@ -40,7 +40,7 @@ def main():
     forms = jotformAPIClient.get_forms()
 
     for form in forms:
-    	print form["title"]
+    	print(form["title"])
 
 if __name__ == "__main__":
     main()
@@ -63,7 +63,7 @@ def main():
 
     submissions = jotformAPIClient.get_form_submissions(latestFormID)
 
-    print submissions
+    print(submissions)
 
 if __name__ == "__main__":
     main()
@@ -80,7 +80,7 @@ def main():
 
     submissions = jotformAPIClient.get_submissions(0, 100, None, "created_at")
 
-    print submissions
+    print(submissions)
 
 if __name__ == "__main__":
     main()
@@ -98,12 +98,12 @@ def main():
     submission_filter = {"id:gt":"FORM ID", "created_at": "DATE"}
 
     submission = jotformAPIClient.get_submissions(0, 0, submission_filter, "") 
-    print submission
+    print(submission)
 
     form_filter = {"id:gt": "FORM ID"}
 
     forms = jotformAPIClient.get_forms(0,0, form_filter, "")
-    print forms
+    print(forms)
 
 if __name__ == "__main__":
     main()
@@ -122,7 +122,7 @@ def main():
 
     for submission in submissions:
         result = jotformAPIClient.delete_submission(submission["id"])
-        print result
+        print(result)
 
 if __name__ == "__main__":
     main()
@@ -130,5 +130,3 @@ if __name__ == "__main__":
 
 First the _JotformAPIClient_ class is included from the _jotform-api-python/jotForm.py_ file. This class provides access to JotForm's API. You have to create an API client instance with your API key. 
 In case of an exception (wrong authentication etc.), you can catch it or let it fail with a fatal error.
-
-    
