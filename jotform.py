@@ -73,6 +73,8 @@ class JotformAPIClient:
             req = urllib.request.Request(url, headers=headers, data=None)
             req.get_method = lambda: 'DELETE'
         elif (method == 'PUT'):
+            if (params):
+                params = params.encode("utf-8")
             req = urllib.request.Request(url, headers=headers, data=params)
             req.get_method = lambda: 'PUT'
 
@@ -402,6 +404,71 @@ class JotformAPIClient:
         """
 
         return self.fetch_url('/folder/' + folderID, method='GET')
+
+    def create_folder(self, folderProperties):
+        """ Create a new folder
+
+        Args:
+            folderProperties (array): Properties of new folder.
+
+        Returns:
+            New folder.
+        """
+
+        return self.fetch_url('/folder', folderProperties, 'POST')
+
+    def delete_folder(self, folderID):
+        """Delete a specific folder and its subfolders
+
+        Args:
+            folderID (string): You can get a list of folders and its subfolders from /user/folders.
+
+        Returns:
+            Status of request.
+        """
+
+        return self.fetch_url('/folder/' + folderID, None, 'DELETE')
+
+    def update_folder(self, folderID, folderProperties):
+        """Update a specific folder
+
+        Args:
+            folderID (string): You can get a list of folders and its subfolders from /user/folders.
+            folderProperties (json): New properties of the specified folder.
+
+        Returns:
+            Status of request.
+        """
+
+        return self.fetch_url('/folder/' + folderID, folderProperties, 'PUT')
+
+    def add_forms_to_folder(self, folderID, formIDs):
+        """Add forms to a folder
+
+        Args:
+            folderID (string): You can get the list of folders and its subfolders from /user/folders.
+            formIDs (array): You can get the list of forms from /user/forms.
+
+        Returns:
+            Status of request.
+        """
+
+        formattedFormIDs = json.dumps({"forms": formIDs})
+        return self.update_folder(folderID, formattedFormIDs)
+
+    def add_form_to_folder(self, folderID, formID):
+        """Add a specific form to a folder
+
+        Args:
+            folderID (string): You can get the list of folders and its subfolders from /user/folders.
+            formID (string): You can get the list of forms from /user/forms.
+
+        Returns:
+            Status of request.
+        """
+
+        formattedFormID = json.dumps({"forms": [formID]})
+        return self.update_folder(folderID, formattedFormID)
 
     def get_form_properties(self, formID):
         """Get a list of all properties on a form.
