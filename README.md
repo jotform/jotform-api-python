@@ -7,12 +7,12 @@ jotform-api-python
 
 Install via git clone:
 
-        $ git clone git://github.com/jotform/jotform-api-python.git
+        $ git clone https://github.com/jotform/jotform-api-python.git
         $ cd jotform-api-python
         
 Install via pip (latest version)
 
-        $ pip install git+git://github.com/jotform/jotform-api-python.git
+        $ pip install git+https://github.com/jotform/jotform-api-python.git
 
 ### Documentation
 
