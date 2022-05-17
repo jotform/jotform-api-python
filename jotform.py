@@ -55,7 +55,9 @@ class JotformAPIClient:
             self._log(params)
 
         headers = {
-            'apiKey': self.__apiKey
+            'apiKey': self.__apiKey,
+            'User-Agent': 'Mozilla/5.0'
+            
         }
 
         if (method == 'GET'):
