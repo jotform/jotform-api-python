@@ -56,8 +56,7 @@ class JotformAPIClient:
 
         headers = {
             'apiKey': self.__apiKey,
-            'User-Agent': 'Mozilla/5.0'
-            
+            'User-Agent': 'JOTFORM_PYTHON_WRAPPER'
         }
 
         if (method == 'GET'):
