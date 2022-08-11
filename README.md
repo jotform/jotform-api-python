@@ -16,7 +16,7 @@ Install via pip (latest version)
 
 ### Documentation
 
-You can find the docs for the API of this client at [http://api.jotform.com/docs/](http://api.jotform.com/docs)
+You can find the docs for the API of this client at [http://api.jotform.com/docs/](http://api.jotform.com/docs). Argument names and descriptions can be found in jotform.py.
 
 ### Authentication
 
@@ -34,7 +34,11 @@ def main():
     jotformAPIClient = JotformAPIClient('YOUR API KEY')
 
     forms = jotformAPIClient.get_forms()
-
+    # get_forms Args:
+    #     offset (string): Start of each result set for form list. (optional)
+    #     limit (string): Number of results in each result set for form list. (optional)
+    #     filterArray (array): Filters the query results to fetch a specific form range.(optional)
+    #     order_by (string): Order results by a form field name. (optional)
     for form in forms:
     	print(form["title"])
 
@@ -51,14 +55,23 @@ def main():
 
     jotformAPIClient = JotformAPIClient('YOUR API KEY')
 
-    forms = jotformAPIClient.get_forms(None, 1, None, None)
-
+    forms = jotformAPIClient.get_forms(offset=None, limit=1, filterArray=None, order_by=None)
+    # get_forms Args:
+    #     offset (string): Start of each result set for form list. (optional)
+    #     limit (string): Number of results in each result set for form list. (optional)
+    #     filterArray (array): Filters the query results to fetch a specific form range.(optional)
+    #     order_by (string): Order results by a form field name. (optional)
     latestForm = forms[0]
 
     latestFormID = latestForm["id"]
 
-    submissions = jotformAPIClient.get_form_submissions(latestFormID)
-
+    submissions = jotformAPIClient.get_form_submissions(formID=latestFormID)
+    # get_form_submissions Args:
+    #     formID (string): Form ID is the numbers you see on a form URL. You can get form IDs when you call /user/forms.
+    #     offset (string): Start of each result set for form list. (optional)
+    #     limit (string): Number of results in each result set for form list. (optional)
+    #     filterArray (array): Filters the query results to fetch a specific form range.(optional)
+    #     order_by (string): Order results by a form field name. (optional)
     print(submissions)
 
 if __name__ == "__main__":
@@ -74,7 +87,12 @@ def main():
 
     jotformAPIClient = JotformAPIClient('YOUR API KEY')
 
-    submissions = jotformAPIClient.get_submissions(0, 100, None, "created_at")
+    submissions = jotformAPIClient.get_submissions(offset=0, limit=100, filterArray=None, order_by="created_at")
+    # get_submissions Args:
+    #         offset (string): Start of each result set for form list. (optional)
+    #         limit (string): Number of results in each result set for form list. (optional)
+    #         filterArray (array): Filters the query results to fetch a specific form range.(optional)
+    #         order_by (string): Order results by a form field name. (optional)
 
     print(submissions)
 
@@ -93,12 +111,22 @@ def main():
 
     submission_filter = {"id:gt":"FORM ID", "created_at": "DATE"}
 
-    submission = jotformAPIClient.get_submissions(0, 0, submission_filter, "") 
+    submission = jotformAPIClient.get_submissions(offset=0, limit=0, filterArray=submission_filter, order_by="")
+    # get_submissions Args:
+    #         offset (string): Start of each result set for form list. (optional)
+    #         limit (string): Number of results in each result set for form list. (optional)
+    #         filterArray (array): Filters the query results to fetch a specific form range.(optional)
+    #         order_by (string): Order results by a form field name. (optional)
     print(submission)
 
     form_filter = {"id:gt": "FORM ID"}
 
-    forms = jotformAPIClient.get_forms(0,0, form_filter, "")
+    forms = jotformAPIClient.get_forms(offset=0, limit=0, filterArray=form_filter, order_by="")
+    # get_forms Args:
+    #     offset (string): Start of each result set for form list. (optional)
+    #     limit (string): Number of results in each result set for form list. (optional)
+    #     filterArray (array): Filters the query results to fetch a specific form range.(optional)
+    #     order_by (string): Order results by a form field name. (optional)
     print(forms)
 
 if __name__ == "__main__":
@@ -114,10 +142,16 @@ def main():
 
     jotformAPIClient = JotformAPIClient('YOUR API KEY')
 
-    submissions = jotformAPIClient.get_submissions(0, 50, None, None)
-
+    submissions = jotformAPIClient.get_submissions(offset=0, limit=50, filterArray=None, order_by=None)
+    # get_submissions Args:
+    #         offset (string): Start of each result set for form list. (optional)
+    #         limit (string): Number of results in each result set for form list. (optional)
+    #         filterArray (array): Filters the query results to fetch a specific form range.(optional)
+    #         order_by (string): Order results by a form field name. (optional)
     for submission in submissions:
-        result = jotformAPIClient.delete_submission(submission["id"])
+        result = jotformAPIClient.delete_submission(sid=submission["id"])
+    # delete_submission Args:
+    #     sid (string): You can get submission IDs when you call /form/{id}/submissions.
         print(result)
 
 if __name__ == "__main__":
