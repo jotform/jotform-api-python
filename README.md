@@ -16,7 +16,7 @@ Install via pip (latest version)
 
 ### Documentation
 
-You can find the docs for the API of this client at [https://api.jotform.com/docs/](http://api.jotform.com/docs)
+You can find the docs for the API of this client at [https://api.jotform.com/docs/](https://api.jotform.com/docs)
 
 ### Authentication
 
