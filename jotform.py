@@ -18,11 +18,13 @@ class JotformAPIClient:
     __apiVersion = 'v1'
 
     __apiKey = None
+    __teamId = None
     __debugMode = False
     __outputType = "json"
 
-    def __init__(self, apiKey='', baseUrl=DEFAULT_BASE_URL, outputType='json', debug=False):
+    def __init__(self, apiKey='', teamId=None, baseUrl=DEFAULT_BASE_URL, outputType='json', debug=False):
         self.__apiKey = apiKey
+        self.__teamId = teamId
         self.__baseUrl = baseUrl
         self.__outputType = outputType.lower()
         self.__debugMode = debug
@@ -44,7 +46,7 @@ class JotformAPIClient:
     def set_outputType(self, value):
         self.__outputType = value
 
-    def fetch_url(self, url, params=None, method=None):
+    def fetch_url(self, url, params=None, method=None, teamId=None):
         if(self.__outputType != 'json'):
             url = url + '.xml'
 
@@ -56,8 +58,11 @@ class JotformAPIClient:
 
         headers = {
             'apiKey': self.__apiKey,
-            'User-Agent': 'JOTFORM_PYTHON_WRAPPER'
+            'User-Agent': 'JOTFORM_PYTHON_WRAPPER',
         }
+
+        if self.__teamId != None:
+            headers['teamId'] = self.__teamId
 
         if (method == 'GET'):
             if (params):
