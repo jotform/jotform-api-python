@@ -61,11 +61,9 @@ class JotformAPIClient:
             'User-Agent': 'JOTFORM_PYTHON_WRAPPER',
         }
 
-        print(headers)
         if self.__teamId != None:
             headers['jf-team-id'] = self.__teamId
 
-        print(headers)
         if (method == 'GET'):
             if (params):
                 url = url + '?' + urllib.parse.urlencode(params)
