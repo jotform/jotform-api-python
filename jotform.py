@@ -154,6 +154,23 @@ class JotformAPIClient:
 
         return self.fetch_url('/user/forms', params, 'GET')
 
+    def get_teams(self, offset=None, limit=None, filterArray=None, order_by=None):
+        """Get a list of teams for this account
+
+        Args:
+            offset (string): Start of each result set for form list. (optional)
+            limit (string): Number of results in each result set for form list. (optional)
+            filterArray (array): Filters the query results to fetch a specific form range.(optional)
+            order_by (string): Order results by a form field name. (optional)
+
+        Returns:
+            Teams info.
+        """
+
+        params = self.create_conditions(offset, limit, filterArray, order_by)
+
+        return self.fetch_url('/team/server/teams', params, 'GET')
+
     def get_submissions(self, offset=None, limit=None, filterArray=None, order_by=None):
         """Get a list of submissions for this account.
 
