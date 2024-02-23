@@ -8,7 +8,9 @@
 # version : 1.0
 # package : JotFormAPI
 
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
+import urllib.parse
+import urllib.error
 import json
 
 class JotformAPIClient:
@@ -38,16 +40,18 @@ class JotformAPIClient:
 
     def get_debugMode(self):
         return self.__debugMode
+
     def set_debugMode(self, value):
         self.__debugMode = value
 
     def get_outputType(self):
         return self.__outputType
+
     def set_outputType(self, value):
         self.__outputType = value
 
     def fetch_url(self, url, params=None, method=None, teamId=None):
-        if(self.__outputType != 'json'):
+        if (self.__outputType != 'json'):
             url = url + '.xml'
 
         url = self.__baseUrl + self.__apiVersion + url
@@ -61,8 +65,9 @@ class JotformAPIClient:
             'User-Agent': 'JOTFORM_PYTHON_WRAPPER',
         }
 
-        if self.__teamId != None:
-            headers['jf-team-id'] = self.__teamId
+        teamId = teamId or self.__teamId
+        if teamId is not None:
+            headers['jf-team-id'] = teamId
 
         if (method == 'GET'):
             if (params):
@@ -99,8 +104,8 @@ class JotformAPIClient:
         params = {}
 
         for key in list(args.keys()):
-            if(args[key]):
-                if(key == 'filter'):
+            if args[key]:
+                if key == 'filter' :
                     params[key] = json.dumps(args[key])
                 else:
                     params[key] = args[key]
@@ -151,6 +156,23 @@ class JotformAPIClient:
         params = self.create_conditions(offset, limit, filterArray, order_by)
 
         return self.fetch_url('/user/forms', params, 'GET')
+
+    def get_my_teams(self, offset=None, limit=None, filterArray=None, order_by=None):
+        """Get a list of teams for this user
+
+        Args:
+            offset (string): Start of each result set for form list. (optional)
+            limit (string): Number of results in each result set for form list. (optional)
+            filterArray (array): Filters the query results to fetch a specific form range.(optional)
+            order_by (string): Order results by a form field name. (optional)
+
+        Returns:
+            Teams info.
+        """
+
+        params = self.create_conditions(offset, limit, filterArray, order_by)
+
+        return self.fetch_url('/team/user/me', params, 'GET')
 
     def get_teams(self, offset=None, limit=None, filterArray=None, order_by=None):
         """Get a list of teams for this account
@@ -276,7 +298,7 @@ class JotformAPIClient:
 
         return self.fetch_url('/form/' + formID + '/questions', method='GET')
 
-    def get_form_question(self, formID,  qid):
+    def get_form_question(self, formID, qid):
         """Get details about a question
 
         Args:
@@ -321,7 +343,7 @@ class JotformAPIClient:
 
         for key in submission.keys():
             if "_" in key:
-                sub['submission[' + key[0:key.find("_")] + '][' + key[key.find("_")+1:len(key)] + ']'] = submission[key]
+                sub['submission[' + key[0:key.find("_")] + '][' + key[key.find("_") + 1:len(key)] + ']'] = submission[key]
             else:
                 sub['submission[' + key + ']'] = submission[key]
 
@@ -569,7 +591,7 @@ class JotformAPIClient:
 
         for key in submission.keys():
             if '_' in key and key != "created_at":
-                sub['submission[' + key[0:key.find('_')] + '][' + key[key.find('_')+1:len(key)] + ']'] = submission[key]
+                sub['submission[' + key[0:key.find('_')] + '][' + key[key.find('_') + 1:len(key)] + ']'] = submission[key]
             else:
                 sub['submission[' + key + ']'] = submission[key]
 
@@ -700,7 +722,7 @@ class JotformAPIClient:
                 else:
                     v = value[k]
                     for a in v.keys():
-                        params[key + '[' + k + '][' + a + ']'] =v[a]
+                        params[key + '[' + k + '][' + a + ']'] = v[a]
 
         return self.fetch_url('/user/forms', params, 'POST')
 
